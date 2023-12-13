@@ -1,0 +1,19 @@
+version: '1.0.0'
+
+services:
+  api:
+    container_name: api-server
+    build: ./docker/unit-openapi
+    ports:
+      - "8765:8765"
+      - "8080:8080"
+    restart: always
+  nginx-unit:
+    container_name: nginx-unit-server
+    build: ./docker/unit-1.31.1-php8.2
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/unit-1.31.1-php8.2/config/unit.conf.json:/docker-entrypoint.d/.unit.conf.json
+      - ./www/:/var/www/
+    restart: always

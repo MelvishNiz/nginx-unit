@@ -1,0 +1,24 @@
+{
+    "listeners": {
+        "*:80": {
+            "pass": "routes"
+        }
+    },
+    "routes": [
+        {
+            "match": {
+                "host": ["laravel.test", "muhsyahrul.test"]
+            },
+            "action": {
+                "pass": "applications/laravel"
+            }
+        }
+    ],
+    "applications": {
+        "laravel": {
+            "type": "php",
+            "root": "/var/www/laravel-example/public/",
+            "script": "index.php"
+        }
+    }
+}

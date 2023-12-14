@@ -17,3 +17,14 @@ services:
       - ./docker/unit-1.31.1-php8.2/config/unit.conf.json:/docker-entrypoint.d/.unit.conf.json
       - ./www/:/var/www/
     restart: always
+  postgresqldb:
+    image: postgres:latest
+    restart: always
+    environment:
+        - POSTGRES_DB=${DB_NAME}
+        - POSTGRES_USER=${DB_USER}
+        - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+        - 5432:5432
+    volumes:
+        - ./.docker/conf/postgres/:/docker-entrypoint-initdb.d/
